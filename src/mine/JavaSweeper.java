@@ -11,9 +11,13 @@ import javax.swing.WindowConstants;
 
 import sweeper.Box;
 import sweeper.Coord;
+import sweeper.Game;
 import sweeper.Ranges;
 
 public class JavaSweeper extends JFrame{
+	private Game game;
+	
+	
 	private JPanel panel;
 	private final int COLS = 9;
 	private final int ROWS = 9;
@@ -23,7 +27,7 @@ public class JavaSweeper extends JFrame{
 
 	}
 	private JavaSweeper() {
-		Ranges.setSize (new Coord(COLS,ROWS));
+		game = new Game(COLS,ROWS);
 		setImages();
 		initPanel();
 		initFrame();
@@ -40,7 +44,7 @@ public class JavaSweeper extends JFrame{
 				super.paintComponents(g);
 				for(Coord coord : Ranges.getAllCoords()) {
 				
-					g.drawImage((Image)Box.values()[(coord.x+coord.y) % Box.values().length].image, coord.x*IMAGE_SIZE, coord.y*IMAGE_SIZE, this);
+					g.drawImage((Image)game.getBox(coord).image, coord.x*IMAGE_SIZE, coord.y*IMAGE_SIZE, this);
 				}
 			}
 			
@@ -67,7 +71,7 @@ public class JavaSweeper extends JFrame{
 	
 	
 	private Image getImage(String name) {
-		String filename = "img/" + name.toLowerCase() + ".png";
+		String filename = "res/"+"img/" + name.toLowerCase() + ".png";
 		//ImageIcon icon = new ImageIcon (getClass().getResource(filename)); как в мастерклассе, почему то не работает в эклипсе.
 		ImageIcon icon = new ImageIcon(filename);
 		
