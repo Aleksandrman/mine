@@ -21,13 +21,15 @@ public class JavaSweeper extends JFrame{
 	private JPanel panel;
 	private final int COLS = 9;
 	private final int ROWS = 9;
+	private final int BOMBS = 10;
 	private final int IMAGE_SIZE = 50;
 	public static void main(String[] args) {
 		new JavaSweeper();
 
 	}
 	private JavaSweeper() {
-		game = new Game(COLS,ROWS);
+		game = new Game(COLS,ROWS, BOMBS);
+		game.start();
 		setImages();
 		initPanel();
 		initFrame();
@@ -61,6 +63,7 @@ public class JavaSweeper extends JFrame{
 		setResizable(false);
 		setVisible(true);
 		setIconImage(getImage("icon"));
+		
 		}
 	
 	private void setImages() {
@@ -71,7 +74,7 @@ public class JavaSweeper extends JFrame{
 	
 	
 	private Image getImage(String name) {
-		String filename = "res/"+"img/" + name.toLowerCase() + ".png";
+		String filename = "img/" + name.toLowerCase() + ".png";
 		//ImageIcon icon = new ImageIcon (getClass().getResource(filename)); как в мастерклассе, почему то не работает в эклипсе.
 		ImageIcon icon = new ImageIcon(filename);
 		
