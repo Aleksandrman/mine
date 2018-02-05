@@ -40,6 +40,7 @@ public class JavaSweeper extends JFrame{
 		initLable();
 		initPanel();
 		initFrame();
+		
 			}
 	
 	private void initLable() {
@@ -100,6 +101,7 @@ public class JavaSweeper extends JFrame{
 		setIconImage(getImage("icon"));
 		pack();
 		setLocationRelativeTo(null);
+		panel.repaint();
 		}
 	
 	private void setImages() {
@@ -111,7 +113,7 @@ public class JavaSweeper extends JFrame{
 	
 	private Image getImage(String name) {
 		String filename = "img/" + name.toLowerCase() + ".png";
-		//ImageIcon icon = new ImageIcon (getClass().getResource(filename)); как в мастерклассе, почему то не работает в эклипсе.
+		//ImageIcon icon = new ImageIcon (getClass().getResource(filename));// как в мастерклассе, почему то не работает в эклипсе.
 		ImageIcon icon = new ImageIcon(filename);
 		
 		

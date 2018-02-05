@@ -30,11 +30,14 @@ public Box getBox (Coord coord) {
 
 public void pressLeftButton(Coord coord) {
 	openBox(coord);
+	chekwinner();
 	
 }
 
 private void chekwinner() {
-	
+	if(state == GameState.PLAYED)
+		if (flag.getCountofClosedBoxes()==bomb.getTotalBombs())
+			state = GameState.WINNER;
 }
 
 
@@ -45,12 +48,22 @@ private void openBox(Coord coord) {
 	case closed : 
 		switch(bomb.get(coord)) {
 		case zero : openBoxesAround(coord); return;
-		case bomb : return;
+		case bomb : openBombs(coord) ;return;
 		default : flag.setOpenedToBox(coord); return;
 		}
 	}
 }
 
+private void openBombs(Coord bombed) {
+	state = GameState.BOMBER;
+	flag.setBombedToBox(bombed);
+	for (Coord coord:Ranges.getAllCoords())
+		if(bomb.get(coord) == Box.bomb)
+			flag.setOpenedToClosedBombBox(coord);
+		else
+			flag.setNoBombToFlagedSafeBox(coord);
+	
+}
 private void openBoxesAround(Coord coord) {
 	flag.setOpenedToBox(coord);
 	for(Coord around : Ranges.getCoordsAround(coord))

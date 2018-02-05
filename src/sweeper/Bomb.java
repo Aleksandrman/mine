@@ -40,4 +40,8 @@ package sweeper;
 			if (Box.bomb != bombMap.get(around))
 			bombMap.set(around, bombMap.get(around).getnextNumperBox()); // увеличивает цифру вокруг бомбы
 	}
+	int getTotalBombs() {
+		
+		return totalBombs;
+	}
 }
