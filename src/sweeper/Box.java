@@ -19,4 +19,8 @@ nobomb;
 	
 	public Object image;
 
+	
+	Box getnextNumperBox() {
+		return Box.values()[this.ordinal()+1]; // возвращаем следующий бок
+	}
 }
