@@ -47,7 +47,14 @@ void setOpenedToClosedBombBox(Coord coord) {
 void setNoBombToFlagedSafeBox(Coord coord) {
 	if(flagMap.get(coord) == Box.flaged)
 		flagMap.set(coord, Box.nobomb);
-	
-}
+	}
 
+int getCountOfFlagedBoxesAround(Coord coord) {
+	int count = 0;
+	for (Coord around : Ranges.getCoordsAround(coord))
+		if (flagMap.get(around) == Box.flaged)
+			count++;// System.out.println(count);
+	
+	return count;
+}
 }

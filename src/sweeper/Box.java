@@ -23,4 +23,9 @@ nobomb;
 	Box getnextNumperBox() {
 		return Box.values()[this.ordinal()+1]; // возвращаем следующий бок
 	}
+
+int getNumber() {
+return this.ordinal();
+}
+
 }
